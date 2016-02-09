@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="pg-dashboard" id="ng-app">
+    <head>
+        <title>PG-Dashboard</title>
+        <link rel="shortcut icon" href="assets/images/THDlogo.ico">
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-yeti.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/angular-charts/angular-chart.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/prettyjson/ng-prettyjson.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    </head>
+    <body ng-controller="MainCtrl">
+        <div class="container-fluid" style="padding: 10px 50px 10px 50px;"> 
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="row clearfix" style="padding-bottom: 5px;">
+                        <div class="col-md-5 column">
+                            <div style="overflow: auto;">
+                                <a ui-sref="stores.offline"><img src="assets/images/THD_logo.png" alt="Home" style="float: left;" /></a>
+                                <span style="float: left; margin-left: 10px;">
+                                    <h4 style="font-weight: bold; margin-top: 0px; font-size: 1.6em;">pg-dashboard</h4>
+                                    <span style="font-style: italic; font-weight: bold;">pg-dashboard payment-services team</span>
+                                </span>
+                            </div>
+                        </div>                    
+                    </div>
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="#/auth/main">Auth</a>
+                                </li>
+                                <li>
+                                    <a href="#/ptm/main">PTM</a>
+                                </li>
+                                <li>
+                                    <a href="#/reversal/main">Reversal</a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+								<li>
+                                    <a href="#/ci">Build</a>
+                                </li>
+                                <li>
+                                    <a href="#/app-statuses">App Status</a>
+                                </li>
+							</ul>
+                        </div>
+                    </nav>
+                    <hr>
+                </div>
+            </div>         
+            <div class="row clearfix">
+                <div class="col-md-12 column" ui-view=""></div>
+            </div>             
+        </div>
+    </body>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-charts/Chart.js"></script>
+    <script type="text/javascript" src="bower_components/angular-charts/angular-chart.js"></script>
+    <script type="text/javascript" src="bower_components/prettyjson/ng-prettyjson.min.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <!-- Utils -->
+    <script type="text/javascript" src="app/utils/filters.js"></script>
+    <script type="text/javascript" src="app/utils/directives.js"></script>
+    
+    <!-- Controller -->
+    <script type="text/javascript" src="app/view/auth/authCtrl.js"></script>
+    <script type="text/javascript" src="app/view/auth/main/authMainCtrl.js"></script>
+    <script type="text/javascript" src="app/view/auth/clients/authClientCtrl.js"></script>
+    <script type="text/javascript" src="app/view/ptm/ptmCtrl.js"></script>
+    <script type="text/javascript" src="app/view/ptm/main/ptmMainCtrl.js"></script>
+    <script type="text/javascript" src="app/view/reversal/reversalCtrl.js"></script>
+    <script type="text/javascript" src="app/view/reversal/main/reversalMainCtrl.js"></script>
+    <script type="text/javascript" src="app/view/auth/main/authDetailModalCtrl.js"></script>
+    <script type="text/javascript" src="app/view/auth/main/todayAuthDetailModalCtrl.js"></script>
+	<script type="text/javascript" src="app/view/build-services/home/ciCtrl.js"></script>
+	<script type="text/javascript" src="app/view/build-services/status/appStatusCtrl.js"></script>
+</html>

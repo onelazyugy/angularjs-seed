@@ -1,0 +1,257 @@
+<div>
+	 <div class="row clearfix">
+	     <div class="col-md-12 column">
+	         <div class="row clearfix">
+	             <div class="col-md-12 column">
+	                 <div class="row clearfix">
+	                 	<div class="col-md-6 column">			
+	                 		<center><font size="5"><u>CreditAuth Statistical Data</u></font></center>
+	                 	</div>
+	                 	<div class="col-md-6 column">			
+	                 		<form class="form-inline">
+					 			<div class="form-group">
+					 				<span><font size="5">Auto Update: <span style="color:green;"><b> {{counter}}  </b></span>seconds</font></span>
+					 			</div>
+							  	<div ng-show="!isTimerStart" class="form-group">
+							  		<button type="submit" ng-click="start()" class="btn btn-primary btn-sm">Resume</button>  
+							  	</div>
+							  	<div ng-show="isTimerStart" class="form-group">
+							  		<button type="submit" ng-click="stop()" class="btn btn-primary btn-sm">Pause</button>  
+							  	</div> 
+							</form>
+	                 	</div>
+	                 </div><hr>
+	                  <div class="row clearfix">
+	                 	<div class="col-md-4 column" style="background-color:#ffae76;">
+	                 		<div>
+	                 			<center>	
+		                 			<span><b>Total Auth Clients</b></span><br>
+	                 				<span ng-show="loadingTotalAuthClients">Loading...</span>
+		                 			<span style="color:green; font-size: 58px;"><b>{{totalClients}}</b></span>
+	                 			</center>
+	                 		</div>
+	                 	</div>
+	                 	<div class="col-md-4 column" style="background-color:#ff9349;">
+	                 		<div ng-show="loadingTotalAuthCountForToday">
+		                 		<center>	
+		                 			<span><b>Today's Auth</b></span><br>
+		                 			<span>Loading...</span>	
+		                 			<span style="color:green; font-size: 58px;"><b>{{totalTodayAuth}}</b></span>
+	                 			</center>
+	                 		</div>
+	                 		<div ng-show="!loadingTotalAuthCountForToday">
+		                 		<center>	
+		                 			<span><b>Today's Auth</b></span><br>
+		                 			<span ng-show="!loadingTotalAuthCountForToday" style="color:green; font-size: 58px;"><b>{{totalTodayAuth}}</b>
+		                 			<span ng-click="viewTodayDetails()" popover-trigger="mouseenter" popover="View Details" style="color:black; font-size: 58px; cursor: pointer;" class="glyphicon glyphicon-new-window pull-right"></span></span>
+	                 			</center>
+	                 		</div>
+	                 	</div>
+	                 	<div class="col-md-4 column" style="background-color:#ffae76;">
+	                 		<center>	
+	                 			<span><b>Today's Total Auth Amount</b></span><br>
+	                 			<span ng-show="loadingTotalAuthAmountForToday">Loading...</span>
+	                 			<span style="color:green; font-size: 58px; word-wrap: break-word;"><b>{{totalAmount | currency}}</b></span>
+                 			</center>
+	                 	</div>
+	                 </div><hr>
+	                 <div class="row clearfix">
+	                 	<div class="col-md-4 column" style="background-color:#fffaf0;">
+	                 		<center><u><b>CreditAuth's Clients</b></u></center>
+	                 		<table class="table table-hover">
+							    <thead>
+							      <tr>
+							        <th>Client Name</th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							    	<tr ng-show="clients.length > 0 && !loadingClientTable" ng-repeat="client in clients track by $index">
+							    		<td>
+							    			<a ui-sref="auth.client({clientId: client})">{{client}}</a>
+							    		</td>
+							    	</tr>
+							    	<tr ng-show="loadingClientTable">
+					                    <td colspan="1" style="text-align: center;">Loading Client Names...</td>
+					                </tr>
+					                <tr ng-show="clients.length <= 0 && !loadingClientTable">
+					                    <td colspan="1" style="text-align: center;">No Client Names</td>
+					                </tr>
+							    </tbody>
+							  </table>
+	                 	</div>
+	                 	<div class="col-md-8 column" style="background-color:#e5e1d8;">
+	                 		<center><u><b>Card Types And Total Dollar Summary</b></u></center>
+	                 		<div ng-if="!loadingCardSummaryTable">	                 		
+		                 		<canvas id="pie" class="chart chart-pie" 
+		                 			    chart-data="data" chart-labels="labels" 
+		                 			    chart-legend="true">                			    
+		                 		</canvas>
+	                 		</div>
+	                 		<div ng-if="loadingCardSummaryTable">	                 		
+		                 		<div>Loading Card Data Summary Chart...</div>
+	                 		</div>
+	                 		<table class="table table-hover">
+							    <thead>
+							      <tr>
+							        <th>Card Type</th>
+							        <th>Total</th>
+							      </tr>
+							    </thead>
+							    <tbody ng-show="!loadingCardSummaryTable">
+							      <tr>
+							        <td>VI</td>
+							        <td>{{cardTypeToTotal.vi | currency}}</td>
+							      </tr>
+							      <tr>
+							        <td>MA</td>
+							        <td>{{cardTypeToTotal.ma | currency}}</td>
+							      </tr>
+							      <tr>
+							        <td>AX</td>
+							        <td>{{cardTypeToTotal.ax | currency}}</td>
+							      </tr>
+							      <tr>
+							        <td>HD</td>
+							        <td>{{cardTypeToTotal.hd | currency}}</td>
+							      </tr>
+							      <tr>
+							        <td>DS</td>
+							        <td>{{cardTypeToTotal.ds | currency}}</td>
+							      </tr>
+							    </tbody>
+							    <tbody ng-show="loadingCardSummaryTable">
+							    	<tr>
+								        <td colspan="1" style="text-align: center;">Loading Card Data Summary...</td>
+							      	</tr>
+							    </tbody>			    			    
+							  </table>
+	                 	</div>
+	                 </div>
+	             </div>
+	         </div>
+		</div>
+	</div>
+	<div class="row clearfix">
+	     <div class="col-md-12 column" style="background-color:#e2e2e2;">
+	         <div class="row clearfix">
+	             <div class="col-md-12 column">
+	             	<center><u><b>CreditAuth's Summary</b></u></center>
+	             	<div class="row clearfix">
+	             		<div class="col-md-12 column">
+		             		<form class="form-inline">
+							  	<div class="form-group">
+							    	<select ng-model="value" ng-options="value.name for value in optionValues">
+								    	<option value="">Choose a value</option>
+								    </select>
+							  </div>
+							  <button type="submit" class="btn btn-primary" ng-click="submit(value.name)">Load</button>
+							  <div class="form-group">
+							    <label>Search Client ID:</label>
+							  	<input type="text" class="form-control" ng-model="search.clientId" placeholder="Client ID">
+							  </div>
+							  <div class="form-group">
+							    <label>Search UUID:</label>
+							  	<input type="text" class="form-control" ng-model="search.uuid" placeholder="UUID">
+							  </div>
+							</form>
+						</div>
+	             	</div>
+	             	<table class="table table-hover" ng-init="orderByField='ts'; reverseSort = false;">
+					    <thead>
+					      <tr>
+					      	<th>#</th>
+					      	<th ng-click="orderByField='clientId'; reverseSort = !reverseSort">
+					      		Client Name
+					      		<span ng-show="orderByField == 'clientOtherName'">
+			                        <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+			                        <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+			                    </span>
+					      	</th>
+					      	<th ng-click="orderByField='clientId'; reverseSort = !reverseSort">
+					      		Client Id
+					      		<span ng-show="orderByField == 'clientId'">
+			                        <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+			                        <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+			                    </span>
+					      	</th>
+					        <th ng-click="orderByField='merchantId'; reverseSort = !reverseSort">
+					        	Merchant Id
+					        	<span ng-show="orderByField == 'merchantId'">
+			                        <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+			                        <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+			                    </span>
+					        </th>
+					        <th ng-click="orderByField='merchantZip'; reverseSort = !reverseSort">
+					        	Merchant Zip
+					        	<span ng-show="orderByField == 'merchantZip'">
+			                        <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+			                        <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+			                    </span>
+					        </th>
+					        <th ng-click="orderByField='authAmount'; reverseSort = !reverseSort">
+					        	Amount
+					        	<span ng-show="orderByField == 'authAmount'">
+			                        <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+			                        <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+			                    </span>
+					        </th>
+					        <th ng-click="orderByField='ts'; reverseSort = !reverseSort">
+					        	Time
+					        	<span ng-show="orderByField == 'ts'">
+			                        <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+			                        <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+			                    </span>
+					        </th>
+							<th ng-click="orderByField='uuid'; reverseSort = !reverseSort">
+								Auth UUID
+								<span ng-show="orderByField == 'uuid'">
+			                        <span ng-show="!reverseSort" class="glyphicon glyphicon-chevron-up"></span>
+			                        <span ng-show="reverseSort" class="glyphicon glyphicon-chevron-down"></span>
+			                    </span>
+							</th>
+							<th>View Details</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					    	<tr ng-show="storeToAuth.length > 0 && !loadingSummaryTable" ng-repeat="store in storeToAuth | orderBy:orderByField:reverseSort | filter:search">
+					    		<td>
+					    			{{$index+1}}
+					    		</td>
+					    		<td>
+					    			{{store.clientOtherName}}
+					    		</td>
+					    		<td>
+					    			{{store.clientId}}
+					    		</td>
+					    		<td>
+					    			{{store.merchantId}}
+					    		</td>
+					    		<td>
+					    			{{store.merchantZip}}
+					    		</td>
+					    		<td>
+					    			{{store.authAmount}}
+					    		</td>
+					    		<td>
+					    			{{store.ts}}
+					    		</td>
+								<td>
+									{{store.uuid}}
+								</td>
+					    		<td>
+									<a ng-click="getAuthData(store.clientId, store.uuid)"> View Request and Repsonse </a>
+								</td>
+							</tr>
+							<tr ng-show="loadingSummaryTable">
+			                    <td colspan="9" style="text-align: center;">Loading Auth Summary...</td>
+			                </tr>
+			                <tr ng-show="storeToAuth.length <= 0 && !loadingSummaryTable">
+			                    <td colspan="9" style="text-align: center;">No Auth Summary</td>
+			                </tr>
+					    </tbody>
+					  </table>
+	             </div>
+	       	</div>
+	   	</div>
+	</div>	   	    	      
+</div>	              

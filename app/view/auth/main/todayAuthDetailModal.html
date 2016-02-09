@@ -1,0 +1,84 @@
+<!-- overriding bootstrap modal for bigger modal width -->
+<style>
+	.modal-dialog {
+	    width: 95%;
+	    padding-top: 30px;
+	    padding-bottom: 30px;
+  }
+</style>
+<div class="modal-header">
+    <button type="button" class="close pull-right" ng-click="close()"><span class="glyphicon glyphicon-remove"></span></button>
+    <h4 class="modal-title">Today's Auth Details</h4>
+</div>
+<div class="modal-body">
+    <div class="row clearfix">
+         <div class="col-md-6 column">
+	         <div style="background-color:#f2f2f2;">	
+	         	<center>	
+	         		<span><b>Today's Total Auth Amount</b></span><br>
+	        	</center><br>
+	        	<div ng-show="!loadingTodayClientData">
+	        		<canvas id="bar" class="chart chart-bar" chart-data="amountData" 
+	        				chart-labels="clientNameAmountLables"  chart-series="amountSeries"
+	        				options="amountGraphOptions">
+	        		</canvas><br>
+	        		<center>
+	        			<span class="badge" style="background-color: #97BBCD; padding-right: 5px;">Auth Amount</span>
+	        		</center>
+	         	</div>
+	        </div>	
+        	<center><span ng-show="loadingTodayClientData">Loading...</span></center>   
+         </div>
+         <div class="col-md-6 column">
+	         <div style="background-color:#f2f2f2;">	
+	         	<center>	
+	         		<span><b>Today's Total Auth Count</b></span><br>
+	        	</center><br>
+	        	<div ng-show="!loadingTodayClientData">
+	        		<canvas id="bar" class="chart chart-bar" chart-data="countData" 
+	        				chart-labels="clientNameCountLables"  chart-series="countSeries"
+							options="countGraphOptions">
+	        		</canvas><br>
+	        		<center>
+	        			<span class="badge" style="background-color: #97BBCD">Auth Count</span>
+	        		</center>
+	         	</div>
+	        </div>	
+        	<center><span ng-show="loadingTodayClientData">Loading...</span></center>   
+         </div><hr>
+	</div><br>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div style="background-color:#fffaf0;"> 
+	        	<table class="table table-hover">
+				   <thead>
+				      <tr>
+				        <th>Client Name</th>
+				        <th>Today's Total Auth Amount</th>
+				        <th>Today's Total Auth Count</th>
+				      </tr>
+				   </thead>
+				   <tbody>
+				    	<tr ng-repeat="todayClientData in clientData"> 
+				    		<td>
+				    			{{todayClientData.name}}
+				    		</td>
+				    		<td>
+				    			{{todayClientData.amount | currency}}
+				    		</td>
+				    		<td>
+				    			{{todayClientData.count}}
+				    		</td>
+				    	</tr>	
+				    	<tr ng-show="loadingTodayClientData">
+				                  <td colspan="3" style="text-align: center;">Loading...</td>
+				              </tr>						    	
+				   </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div><br ><br >
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="close()">Close</button>
+</div>

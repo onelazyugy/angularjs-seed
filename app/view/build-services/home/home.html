@@ -1,0 +1,27 @@
+<div class="row clearfix">
+  <div class="col-md-12 column">
+	  <center><h2>Build Services</h2></center>
+	  <div class="row">
+	    <div class="col-sm-3" ng-repeat="link in internalLinks">
+	      <a class="service-link btn btn-positive" target="_blank" href="{{link.link}}">
+	        <div>
+	          <img class="img-rounded link-icon" ng-src="{{'assets/images/' + link.icon}}"/>
+	            <h4>{{link.name}}</h4>
+	        </div>
+	      </a>
+	    </div>
+	  </div>
+	
+	  <center><h2>External Links</h2></center>
+	  <div class="row">
+	    <div class="col-sm-3" ng-repeat="link in externalLinks">
+	      <a class="service-link btn btn-positive" target="_blank" href="{{link.link}}">
+	        <div>
+	          <img class="img-rounded link-icon" ng-src="{{'assets/images/' + link.icon}}"/>
+	            <h4>{{link.name}}</h4>
+	        </div>
+	      </a>
+	    </div>
+	  </div>
+	</div>
+</div>

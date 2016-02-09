@@ -1,0 +1,89 @@
+<div class="row"> 
+     <div class="col-md-12 column" style="background-color:#fffaf0;">
+     	<center><u><b>Card data for [{{clientName}}]</b></u></center>
+   		<div class="row"> 
+     		<div class="col-md-6">
+		   		<canvas id="pie" class="chart chart-pie" 
+		     			    chart-data="data" chart-labels="labels" 
+		     			    chart-legend="true">
+		     	</canvas>  
+		    </div>
+		    <div class="col-md-6 ">	        
+			<table class="table table-hover">
+			    <thead>
+			      <tr>
+			        <th>Card Type</th>
+			        <th>Total</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td>VI</td>
+			        <td>{{cardTypeToTotal.vi | currency}}</td>
+			      </tr>
+			      <tr>
+			        <td>MA</td>
+			        <td>{{cardTypeToTotal.ma | currency}}</td>
+			      </tr>
+			      <tr>
+			        <td>AX</td>
+			        <td>{{cardTypeToTotal.ax | currency}}</td>
+			      </tr>
+			      <tr>
+			        <td>HD</td>
+			        <td>{{cardTypeToTotal.hd | currency}}</td>
+			      </tr>
+			      <tr>
+			        <td>DS</td>
+			        <td>{{cardTypeToTotal.ds | currency}}</td>
+			      </tr>
+			    </tbody>
+			  </table>
+			</div>
+		 </div>
+     </div>    
+</div><br>
+<div class="row">
+	<div class="col-md-12 column" style="background-color:#e5e1d8;">
+    	<center><u><b>Declined data for [{{clientName}}]</b></u></center>
+        <table class="table table-hover">
+		    <thead>
+		      <tr>
+		        <th>Client Id</th>
+		        <th>Header UUID</th>
+		        <th>auth Response UUID</th>
+		        <th>response Msg</th>
+		        <th>tandem Response Msg</th>
+		        <th>authId Response</th>
+		        <th>trans Time</th>
+		        <th>amt Of Transaction</th>
+		        <th>merchant Id</th>
+		        <th>merchant Zip</th>
+		        <th>account XRef</th>
+		        <th>card Request Type</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		    	<tr ng-show="declinedData.length > 0" ng-repeat="declined in declinedData track by $index">
+		    		<td>{{declined.clientId}}</td>
+		    		<td>{{declined.headerUUID}}</td>
+		    		<td>{{declined.authResponseUUID}}</td>
+		    		<td>{{declined.responseMsg}}</td>
+		    		<td>{{declined.tandemResponseMsg}}</td>
+		    		<td>{{declined.authIdResponse}}</td>
+		    		<td>{{declined.transTime}}</td>
+		    		<td>{{declined.amtOfTransaction}}</td>
+		    		<td>{{declined.merchantId}}</td>
+		    		<td>{{declined.merchantZip}}</td>
+		    		<td>{{declined.accountXRef}}</td>
+		    		<td>{{declined.cardRequestType}}</td>
+		    	</tr>
+		    	<tr ng-show="declinedData.length <= 0">
+		    		<td colspan="12">No decline data available</td>
+		    	</tr>
+		    </tbody>
+		</table>
+     </div>
+</div>
+
+         

@@ -1,0 +1,39 @@
+iframe {
+  /*resize: both;*/
+  /*overflow: auto;*/
+  background-color: #FFFFFF ;
+  min-width: 805px;
+}
+
+.navbar {
+  margin-bottom: 0;
+  color: #FFFFFF;
+}
+
+.dashboard-header {
+  background-color: #F57115;
+  color: #FFFFFF;
+}
+
+
+.service-link {
+  min-height: 55px;
+  min-width: 200px;
+  text-align: left;
+}
+.service-link > div {
+  display: flex;
+}
+
+.link-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px
+}
+
+.status-header {
+  background-color: #F57115;
+  color: #FFFFFF;
+  padding: 15px;
+  height:100%;
+}
